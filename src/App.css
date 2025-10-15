@@ -1,38 +1,174 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap');
+
+body {
+  background-color: white;
+  font-family: 'Tilt Warp', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.phone-frame {
+  width: 375px;
+  height: 700px;
+  background-color: white;
+  border-radius: 25px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.menu-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.2);
+}
+
+.menu-line {
+  width: 20px;
+  height: 3px;
+  background-color: #ff007f;
+  border-radius: 2px;
+}
+
+.blue-section {
+  background-color: #1d20ff;
+  width: 100%;
+  height: 45%;
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
+.tracker-card {
+  position: absolute;
+  bottom: 0;
+  background-color: #fff6fb;
+  width: 90%;
+  border-radius: 25px;
+  padding: 25px 0;
+  text-align: center;
+  border: 5px solid #00e2ff;
+}
+
+.total-circle {
+  width: 60px;
+  height: 60px;
+  background-color: #ff007f;
+  border-radius: 50%;
   color: white;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: -50px auto 10px;
+  border: 5px solid white;
 }
 
-.App-link {
-  color: #61dafb;
+.cups-label {
+  font-size: 16px;
+  color: #000;
+  margin: 10px 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.counter-btn {
+  background-color: #48ff00;
+  color: white;
+  font-size: 24px;
+  border: none;
+  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.counter-btn:hover {
+  transform: scale(1.1);
+}
+
+.cup-box {
+  background-color: #ffea00;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 8px 20px;
+  border-radius: 10px;
+}
+
+.message {
+  font-size: 18px;
+  color: black;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.save-btn {
+  background-color: #E100FF;
+  color: white;
+  font-size: 18px;
+  padding: 10px 40px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.save-btn:hover {
+  background-color: #ff33cc;
+}
+
+.avatar {
+  position: absolute;
+  top: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar-head {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid #00000025;
+  transition: background-color 0.5s ease, filter 0.5s ease;
+}
+
+
+.avatar-body {
+  width: 100px;
+  height: 60px;
+  background-color: #89cff0; /* shirt color */
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  margin-top: -10px;
 }
