@@ -127,17 +127,27 @@ body {
 /* controls */
 .controls { text-align:center; margin-top:14px; }
 .add-btn {
+  display: inline-flex;           /* use flexbox for content inside button */
+  align-items: center;            /* vertically center plus and text */
+  justify-content: center;        /* center horizontally */
+  gap: 4px;                       /* space between plus and text */
   background: linear-gradient(90deg, var(--accent), var(--primary));
   color: white;
   border: none;
-  padding: 14px 34px;
+  padding: 14px 32px;
   border-radius: 28px;
   font-size: 18px;
   box-shadow: 0 8px 18px rgba(0,180,216,0.18);
   cursor: pointer;
-  font-weight:700;
+  font-weight: 700;
 }
-.add-btn .plus { margin-right:10px; font-size:20px; vertical-align:middle; }
+
+.add-btn .plus {
+  font-size: 20px;
+  vertical-align: middle;
+  margin: 0; /* remove any extra spacing */
+}
+
 .add-btn:active { transform: translateY(1px); }
 
 .small-controls { margin-top:10px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }

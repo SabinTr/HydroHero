@@ -189,7 +189,7 @@ useEffect(() => {
 
         <div className="controls">
           <button className="add-btn" onClick={() => handleAdd(1)}>
-            <span className="plus">＋</span>Add
+            <span className="plus"></span>+ Add
           </button>
 
           
