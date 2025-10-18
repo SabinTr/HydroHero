@@ -115,15 +115,7 @@ useEffect(() => {
     });
   };
 
-  const handleReset = () => {
-    const confirmReset = window.confirm("Reset today's progress to 0?");
-    if (!confirmReset) return;
-    setProgress((prev) => {
-      const updated = { ...prev, amountMl: 0 };
-      localStorage.setItem("hydrohero_progress", JSON.stringify(updated));
-      return updated;
-    });
-  };
+  
 
   const saveSettings = () => {
     // sanitize inputs
@@ -178,7 +170,6 @@ useEffect(() => {
 
           <div className="small-controls">
             <button className="ghost" onClick={() => setSettingsOpen(true)}>⚙️ Settings</button>
-            <button className="ghost" onClick={handleReset}>Reset</button>
             <button className="ghost" onClick={finishDayNow} title="Demo: save today to history">Save Day</button>
           </div>
         </div>
