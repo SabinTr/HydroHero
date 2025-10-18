@@ -145,18 +145,18 @@ useEffect(() => {
     // persist handled in useEffect
   };
 
-  const finishDayNow = () => {
-    // Manually push today's result to history (useful for demo)
-    const percent = percentToday;
-    const updatedHistory = [...history, { date: progress.date, percent }].slice(-7);
-    setHistory(updatedHistory);
-    // reset today's progress
-    const newProgress = { date: getTodayKey(), amountMl: 0 };
-    setProgress(newProgress);
-    localStorage.setItem("hydrohero_history", JSON.stringify(updatedHistory));
-    localStorage.setItem("hydrohero_progress", JSON.stringify(newProgress));
-    alert("Saved today's result to history and reset progress (demo).");
-  };
+  // const finishDayNow = () => {
+  //   // Manually push today's result to history (useful for demo)
+  //   const percent = percentToday;
+  //   const updatedHistory = [...history, { date: progress.date, percent }].slice(-7);
+  //   setHistory(updatedHistory);
+  //   // reset today's progress
+  //   const newProgress = { date: getTodayKey(), amountMl: 0 };
+  //   setProgress(newProgress);
+  //   localStorage.setItem("hydrohero_history", JSON.stringify(updatedHistory));
+  //   localStorage.setItem("hydrohero_progress", JSON.stringify(newProgress));
+  //   alert("Saved today's result to history and reset progress (demo).");
+  // };
 
   return (
     <div className="app">
