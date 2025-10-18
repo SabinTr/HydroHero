@@ -26,6 +26,19 @@ export default function App() {
     }
   });
 
+  const motivationalPhrases = [
+  "Keep going! 💪",
+  "You’re doing great! 🌊",
+  "Stay hydrated! 💧",
+  "Almost there! 🌞",
+  "Refreshing progress! 🩵",
+  "Your body thanks you! 🫶",
+  "One sip at a time! 🚰",
+];
+
+const [motivation, setMotivation] = useState("");
+
+
   // history: array of { date: "YYYY-MM-DD", percent: 0 }
   const [history, setHistory] = useState(() => {
     const h = localStorage.getItem("hydrohero_history");
@@ -42,7 +55,8 @@ export default function App() {
     if (p.date !== todayKey) {
       // move the stored progress into history
       const goalMl = (settings.goalCups || 1) * (settings.cupSize || 250);
-      const percent = Math.round(Math.min((p.amountMl / goalMl) * 100, 100));
+      const percent = Math.round((p.amountMl / goalMl) * 100);
+
       const updatedHistory = [...history, { date: p.date, percent }];
       // keep only last 7 days
       const trimmed = updatedHistory.slice(-7);
@@ -80,7 +94,8 @@ useEffect(() => {
     const currentKey = getTodayKey();
     if (progress.date !== currentKey) {
       const goalMl = (settings.goalCups || 1) * (settings.cupSize || 250);
-      const percent = Math.round(Math.min((progress.amountMl / goalMl) * 100, 100));
+      const percent = Math.round((progress.amountMl / goalMl) * 100);
+
 
       const updatedHistory = [...history, { date: progress.date, percent }].slice(-7);
       setHistory(updatedHistory);
@@ -99,7 +114,8 @@ useEffect(() => {
 
   // Derived values
   const goalMl = (settings.goalCups || 0) * (settings.cupSize || 0);
-  const percentToday = goalMl > 0 ? Math.round(Math.min((progress.amountMl / goalMl) * 100, 100)) : 0;
+  const percentToday = goalMl > 0 ? Math.round((progress.amountMl / goalMl) * 100) : 0;
+
 
 
   // Handlers
@@ -107,12 +123,14 @@ useEffect(() => {
     // add `count` cups (multiplying by cupSize)
     const addMl = (settings.cupSize || 0) * count;
     setProgress((prev) => {
-      const newAmount = prev.amountMl + addMl;
-      const limited = goalMl ? Math.min(newAmount, goalMl) : newAmount;
-      const updated = { ...prev, amountMl: limited };
-      localStorage.setItem("hydrohero_progress", JSON.stringify(updated));
-      return updated;
-    });
+  const newAmount = prev.amountMl + addMl;
+  const updated = { ...prev, amountMl: newAmount }; // no cap
+  localStorage.setItem("hydrohero_progress", JSON.stringify(updated));
+  return updated;
+});
+
+    const randomPhrase = motivationalPhrases[Math.floor(Math.random() * motivationalPhrases.length)];
+  setMotivation(randomPhrase);
   };
 
   
@@ -150,14 +168,20 @@ useEffect(() => {
 
       <main className="main-card">
         <div className="top-stats">
-          <div className="ml-text">
-            <span className="current-ml">
-              {Math.floor(progress.amountMl / settings.cupSize)}
-            </span>
-            <span className="slash">/</span>
-            <span className="goal-ml">{settings.goalCups}</span>
-            <span className="ml">cups</span>
-          </div>
+          <div className="cups-container">
+  <div className="cups-count">
+    <span className="current-cups">
+      {Math.floor(progress.amountMl / settings.cupSize)}
+    </span>
+    <span className="slash">/</span>
+    <span className="goal-cups">{settings.goalCups}</span>
+    <span className="cups-label">cups</span>
+  </div>
+
+  {motivation && <div className="motivation">{motivation}</div>}
+</div>
+
+
 
 
           <CircularProgress size={200} stroke={12} percentage={percentToday} />
@@ -168,10 +192,7 @@ useEffect(() => {
             <span className="plus">＋</span>Add
           </button>
 
-          <div className="small-controls">
-            <button className="ghost" onClick={() => setSettingsOpen(true)}>⚙️ Settings</button>
-            <button className="ghost" onClick={finishDayNow} title="Demo: save today to history">Save Day</button>
-          </div>
+          
         </div>
 
         <section className="weekly">

@@ -64,6 +64,58 @@ body {
 .goal-ml { font-size: 18px; color:#333; }
 .ml { color: #666; margin-left:6px; }
 
+/* New cups layout (stacked vertically) */
+.cups-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center horizontally */
+  justify-content: center;
+  width: 45%; /* match old layout width */
+  text-align: center;
+}
+
+/* The line showing "1 / 9 cups" */
+.cups-count {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 6px;
+}
+
+.current-cups {
+  font-size: 28px;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.goal-cups {
+  font-size: 18px;
+  color: #333;
+}
+
+.cups-label {
+  color: #666;
+  margin-left: 6px;
+}
+
+/* Motivational phrase positioned below the cup count */
+.motivation {
+  height: 22px; /* 👈 Keeps space fixed so number doesn't move */
+  margin-top: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--primary);
+  text-align: center;
+  animation: fadeIn 0.35s ease-in;
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
 /* svg circular */
 .circular { display:block; margin: 0 auto; }
 .circular .percent-text {
@@ -180,3 +232,5 @@ body {
 .toolbar-btn:hover {
   color: #005ecc;
 }
+
+
