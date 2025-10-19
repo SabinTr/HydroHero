@@ -51,7 +51,7 @@ body {
 .yesterday-status { font-weight:600; color: #045a7d; }
 
 /* main card / top area */
-.main-card { padding: 12px 6px; }
+.main-card { padding: 12px 6px; min-height: 520px;}
 .top-stats { display:flex; align-items:center; justify-content:space-between; gap:10px; }
 
 /* ml text */
