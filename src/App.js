@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Layout from "./components/Layout";
-import SettingsModal from "./components/SettingsModal";
 import Toolbar from "./components/Toolbar";
 import HomePage from "./pages/HomePage";
 import HistoryPage from "./pages/HistoryPage";
+import SettingsPage from "./pages/SettingsPage";
 import { getTodayKey } from "./utils/helpers";
 import "./App.css";
 
@@ -31,8 +31,6 @@ export default function App() {
     const h = localStorage.getItem("hydrohero_history");
     return h ? JSON.parse(h) : [];
   });
-
-  const [settingsOpen, setSettingsOpen] = useState(!localStorage.getItem("hydrohero_settings"));
 
   // Initialize on load
   useEffect(() => {
@@ -98,7 +96,7 @@ export default function App() {
 
   const handleSaveSettings = (newSettings) => {
     setSettings(newSettings);
-    setSettingsOpen(false);
+    setCurrentPage('home'); // Navigate back to home after saving
   };
 
   return (
@@ -119,15 +117,15 @@ export default function App() {
         <HistoryPage history={history} />
       )}
 
-      <SettingsModal
-        isOpen={settingsOpen}
-        settings={settings}
-        onSave={handleSaveSettings}
-        onClose={() => setSettingsOpen(false)}
-      />
+      {currentPage === 'settings' && (
+        <SettingsPage 
+          settings={settings} 
+          onSave={handleSaveSettings}
+        />
+      )}
 
       <Toolbar
-        onSettingsClick={() => setSettingsOpen(true)}
+        onSettingsClick={() => setCurrentPage('settings')}
         onHistoryClick={() => setCurrentPage(currentPage === 'history' ? 'home' : 'history')}
       />
     </Layout>
