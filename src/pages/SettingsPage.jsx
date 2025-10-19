@@ -26,19 +26,62 @@ export default function SettingsPage({ settings, onSave }) {
           }}>
             Cup size (ml)
           </label>
-          <input
-            type="number"
-            min="1"
-            value={cupSize}
-            onChange={(e) => setCupSize(e.target.value)}
-            style={{
-              width: '100%',
-              padding: '12px',
-              borderRadius: '10px',
-              border: '1px solid #e6f7ff',
-              fontSize: '16px'
-            }}
-          />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <button
+              onClick={() => setCupSize(Math.max(50, cupSize - 50))}
+              style={{
+                background: 'linear-gradient(90deg, #00b4d8, #0077b6)',
+                color: 'white',
+                border: 'none',
+                width: '45px',
+                height: '45px',
+                borderRadius: '10px',
+                fontSize: '24px',
+                fontWeight: '700',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
+              −
+            </button>
+            <input
+              type="number"
+              min="50"
+              step="50"
+              value={cupSize}
+              onChange={(e) => setCupSize(Math.max(50, Number(e.target.value) || 50))}
+              style={{
+                flex: 1,
+                padding: '12px',
+                borderRadius: '10px',
+                border: '1px solid #e6f7ff',
+                fontSize: '18px',
+                textAlign: 'center',
+                fontWeight: '600'
+              }}
+            />
+            <button
+              onClick={() => setCupSize(cupSize + 50)}
+              style={{
+                background: 'linear-gradient(90deg, #00b4d8, #0077b6)',
+                color: 'white',
+                border: 'none',
+                width: '45px',
+                height: '45px',
+                borderRadius: '10px',
+                fontSize: '24px',
+                fontWeight: '700',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
+              +
+            </button>
+          </div>
         </div>
 
         <div>
@@ -50,19 +93,61 @@ export default function SettingsPage({ settings, onSave }) {
           }}>
             Daily goal (cups)
           </label>
-          <input
-            type="number"
-            min="1"
-            value={goalCups}
-            onChange={(e) => setGoalCups(e.target.value)}
-            style={{
-              width: '100%',
-              padding: '12px',
-              borderRadius: '10px',
-              border: '1px solid #e6f7ff',
-              fontSize: '16px'
-            }}
-          />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <button
+              onClick={() => setGoalCups(Math.max(1, goalCups - 1))}
+              style={{
+                background: 'linear-gradient(90deg, #00b4d8, #0077b6)',
+                color: 'white',
+                border: 'none',
+                width: '45px',
+                height: '45px',
+                borderRadius: '10px',
+                fontSize: '24px',
+                fontWeight: '700',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
+              −
+            </button>
+            <input
+              type="number"
+              min="1"
+              value={goalCups}
+              onChange={(e) => setGoalCups(Math.max(1, Number(e.target.value) || 1))}
+              style={{
+                flex: 1,
+                padding: '12px',
+                borderRadius: '10px',
+                border: '1px solid #e6f7ff',
+                fontSize: '18px',
+                textAlign: 'center',
+                fontWeight: '600'
+              }}
+            />
+            <button
+              onClick={() => setGoalCups(goalCups + 1)}
+              style={{
+                background: 'linear-gradient(90deg, #00b4d8, #0077b6)',
+                color: 'white',
+                border: 'none',
+                width: '45px',
+                height: '45px',
+                borderRadius: '10px',
+                fontSize: '24px',
+                fontWeight: '700',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
+              +
+            </button>
+          </div>
         </div>
 
         <div style={{

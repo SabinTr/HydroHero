@@ -100,7 +100,7 @@ body {
 
 /* Motivational phrase positioned below the cup count */
 .motivation {
-  height: 22px; /* 👈 Keeps space fixed so number doesn't move */
+  height: 22px; /*  Keeps space fixed so number doesn't move */
   margin-top: 8px;
   font-size: 15px;
   font-weight: 600;
@@ -244,3 +244,13 @@ body {
 }
 
 
+/* Remove number input arrows */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
