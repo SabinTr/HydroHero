@@ -83,6 +83,7 @@ export default function App() {
 
   const goalMl = (settings.goalCups || 0) * (settings.cupSize || 0);
   const percentToday = goalMl > 0 ? Math.round((progress.amountMl / goalMl) * 100) : 0;
+  
 
   const handleAddWater = () => {
     const addMl = settings.cupSize || 0;
