@@ -111,6 +111,7 @@ export default function App() {
           percentToday={percentToday}
           history={history}
           todayKey={todayKey}
+          goalMl={goalMl}
         />
       )}
       

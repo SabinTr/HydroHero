@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import CircularProgress from "../components/CircularProgress";
 import WeeklyStats from "../components/WeeklyStats";
 
-export default function HomePage({ progress, settings, onAddWater, percentToday, history, todayKey }) {
+export default function HomePage({ progress, settings, onAddWater, percentToday, history, todayKey, goalMl }) {
   const motivationalPhrases = [
     "Keep going! 💪",
     "You're doing great! 🌊",
@@ -12,14 +12,30 @@ export default function HomePage({ progress, settings, onAddWater, percentToday,
     "Your body thanks you! 🫶",
     "One sip at a time! 🚰",
   ];
+  const overGoalPhrases = [
+  "Crushing it! 🔥",
+  "Absolute legend! 🏆",
+  "Hydration master! 💎",
+  "Beyond the goal! ⭐",
+  "Unstoppable! 🚀",
+  "You're on fire! 🌟",
+  "Incredible work! 👑",
+];
 
   const [motivation, setMotivation] = useState("");
 
   const handleAdd = () => {
-    onAddWater();
-    const randomPhrase = motivationalPhrases[Math.floor(Math.random() * motivationalPhrases.length)];
-    setMotivation(randomPhrase);
-  };
+  onAddWater();
+  
+  // Check if we'll be over the goal after adding water
+  const newTotal = progress.amountMl + settings.cupSize;
+  const isOverGoal = newTotal >= goalMl;
+  
+  // Choose phrase based on whether goal is exceeded
+  const phrases = isOverGoal ? overGoalPhrases : motivationalPhrases;
+  const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+  setMotivation(randomPhrase);
+};
 
   return (
     <main className="main-card">
