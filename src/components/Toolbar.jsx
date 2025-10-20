@@ -1,14 +1,30 @@
 import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
-export default function Toolbar({ onSettingsClick, onHistoryClick }) {
+export default function Toolbar() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   return (
-    <div className="toolbar">
-      <button className="toolbar-btn" onClick={onSettingsClick}>
+    <footer className="toolbar">
+      <button 
+        className="tool-btn"
+        onClick={() => navigate('/settings')}
+      >
         ⚙️ Settings
       </button>
-      <button className="toolbar-btn" onClick={onHistoryClick}>
-        📜 History
+      <button 
+        className="tool-btn"
+        onClick={() => {
+          if (location.pathname === '/history') {
+            navigate('/');
+          } else {
+            navigate('/history');
+          }
+        }}
+      >
+        📊 {location.pathname === '/history' ? 'Home' : 'History'}
       </button>
-    </div>
+    </footer>
   );
 }
