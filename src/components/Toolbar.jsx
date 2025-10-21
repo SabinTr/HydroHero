@@ -8,13 +8,13 @@ export default function Toolbar() {
   return (
     <footer className="toolbar">
       <button 
-        className="tool-btn"
+        className="toolbar-btn"
         onClick={() => navigate('/settings')}
       >
         ⚙️ Settings
       </button>
       <button 
-        className="tool-btn"
+        className="toolbar-btn"
         onClick={() => {
           if (location.pathname === '/history') {
             navigate('/');
@@ -23,7 +23,7 @@ export default function Toolbar() {
           }
         }}
       >
-        📊 {location.pathname === '/history' ? 'Home' : 'History'}
+        📅 {location.pathname === '/history' ? 'Home' : 'History'}
       </button>
     </footer>
   );
