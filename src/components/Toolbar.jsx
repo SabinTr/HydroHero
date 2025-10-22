@@ -1,29 +1,22 @@
+// Toolbar.jsx - UPDATED
 import React from "react";
-import { useNavigate, useLocation } from "react-router-dom";
 
-export default function Toolbar() {
-  const navigate = useNavigate();
-  const location = useLocation();
-
+export default function Toolbar({ currentPage, onSettingsClick, onHistoryClick }) {
   return (
     <footer className="toolbar">
       <button 
         className="toolbar-btn"
-        onClick={() => navigate('/settings')}
+        onClick={onSettingsClick}
+        type="button"
       >
         ⚙️ Settings
       </button>
       <button 
         className="toolbar-btn"
-        onClick={() => {
-          if (location.pathname === '/history') {
-            navigate('/');
-          } else {
-            navigate('/history');
-          }
-        }}
+        onClick={onHistoryClick}
+        type="button"
       >
-        📅 {location.pathname === '/history' ? 'Home' : 'History'}
+        📅 {currentPage === 'history' ? 'Home' : 'History'}
       </button>
     </footer>
   );

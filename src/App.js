@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Toolbar from "./components/Toolbar";
 import HomePage from "./pages/HomePage";
@@ -10,6 +9,7 @@ import "./App.css";
 
 export default function App() {
   const todayKey = getTodayKey();
+  const [currentPage, setCurrentPage] = useState('home');
 
   const [settings, setSettings] = useState(() => {
     const s = localStorage.getItem("hydrohero_settings");
@@ -86,59 +86,47 @@ export default function App() {
 
   const handleAddWater = () => {
     const addMl = settings.cupSize || 0;
-    setProgress((prev) => {
-      const newAmount = prev.amountMl + addMl;
-      const updated = { ...prev, amountMl: newAmount };
-      localStorage.setItem("hydrohero_progress", JSON.stringify(updated));
-      return updated;
-    });
+    setProgress((prev) => ({
+      ...prev,
+      amountMl: prev.amountMl + addMl
+    }));
   };
 
   const handleSaveSettings = (newSettings) => {
     setSettings(newSettings);
+    setCurrentPage('home');
   };
 
   return (
-    <BrowserRouter>
-      <div className="App">
-        <div className="outer">
-          <div className="inner">
-            <Layout>
-              <Routes>
-                <Route
-                  path="/"
-                  element={
-                    <HomePage
-                      progress={progress}
-                      settings={settings}
-                      onAddWater={handleAddWater}
-                      percentToday={percentToday}
-                      history={history}
-                      todayKey={todayKey}
-                      goalMl={goalMl}
-                    />
-                  }
-                />
-                <Route
-                  path="/history"
-                  element={<HistoryPage history={history} />}
-                />
-                <Route
-                  path="/settings"
-                  element={
-                    <SettingsPage
-                      settings={settings}
-                      onSave={handleSaveSettings}
-                    />
-                  }
-                />
-                <Route path="*" element={<div className="error-page">Page Not Found</div>} />
-              </Routes>
-              <Toolbar />
-            </Layout>
-          </div>
-        </div>
-      </div>
-    </BrowserRouter>
+    <Layout>
+      {currentPage === 'home' && (
+        <HomePage
+          progress={progress}
+          settings={settings}
+          onAddWater={handleAddWater}
+          percentToday={percentToday}
+          history={history}
+          todayKey={todayKey}
+          goalMl={goalMl}
+        />
+      )}
+      
+      {currentPage === 'history' && (
+        <HistoryPage history={history} />
+      )}
+
+      {currentPage === 'settings' && (
+        <SettingsPage 
+          settings={settings} 
+          onSave={handleSaveSettings}
+        />
+      )}
+
+      <Toolbar
+        currentPage={currentPage}
+        onSettingsClick={() => setCurrentPage('settings')}
+        onHistoryClick={() => setCurrentPage(currentPage === 'history' ? 'home' : 'history')}
+      />
+    </Layout>
   );
 }
