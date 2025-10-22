@@ -12,7 +12,7 @@ export default function CircularProgress({ size = 200, stroke = 12, percentage =
     <svg 
       width={size} 
       height={size}
-      style={{ overflow: 'visible' }} // 👈 Add this
+      style={{ overflow: 'visible' }} // ðŸ‘ˆ Add this
     >
       <circle
         cx={size / 2}

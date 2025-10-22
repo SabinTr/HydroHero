@@ -9,7 +9,7 @@ export default function Tracker({ water, setWater, goal }) {
     <div className="tracker">
       <p>You drank <strong>{water}</strong> / {goal} cups today</p>
       <div className="buttons">
-        <button onClick={addCup}>Add a Cup 💧</button>
+        <button onClick={addCup}>Add a Cup ðŸ’§</button>
         <button onClick={removeCup}>Undo</button>
         <button onClick={reset}>Reset</button>
       </div>
