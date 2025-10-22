@@ -87,12 +87,10 @@ export default function App() {
 
   const handleAddWater = () => {
     const addMl = settings.cupSize || 0;
-    setProgress((prev) => {
-      const newAmount = prev.amountMl + addMl;
-      const updated = { ...prev, amountMl: newAmount };
-      localStorage.setItem("hydrohero_progress", JSON.stringify(updated));
-      return updated;
-    });
+    setProgress((prev) => ({
+      ...prev,
+      amountMl: prev.amountMl + addMl
+    }));
   };
 
   const handleSaveSettings = (newSettings) => {
@@ -126,6 +124,7 @@ export default function App() {
       )}
 
       <Toolbar
+        currentPage={currentPage}
         onSettingsClick={() => setCurrentPage('settings')}
         onHistoryClick={() => setCurrentPage(currentPage === 'history' ? 'home' : 'history')}
       />

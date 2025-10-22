@@ -1,14 +1,22 @@
 import React from "react";
 
-export default function Toolbar({ onSettingsClick, onHistoryClick }) {
+export default function Toolbar({ currentPage, onSettingsClick, onHistoryClick }) {
   return (
-    <div className="toolbar">
-      <button className="toolbar-btn" onClick={onSettingsClick}>
+    <footer className="toolbar">
+      <button 
+      className="toolbar-btn" 
+      onClick={onSettingsClick}
+      type="button"
+      >
         ⚙️ Settings
       </button>
-      <button className="toolbar-btn" onClick={onHistoryClick}>
-        📜 History
+      <button 
+      className="toolbar-btn" 
+      onClick={onHistoryClick}
+      type="button"
+      >
+        📜 {currentPage === 'history' ? 'Home' : 'History'}
       </button>
-    </div>
+    </footer>
   );
 }
